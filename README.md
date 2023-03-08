@@ -1,15 +1,3 @@
-<p align="center">
-  <img src="docs/img/logo.png" />
-</p>
-
-[![Travis CI](https://travis-ci.org/fdzsergio/Reductio.svg?branch=master)](https://travis-ci.org/fdzsergio/Reductio)
-[![Version](https://img.shields.io/cocoapods/v/Reductio.svg?style=flat)](http://cocoapods.org/pods/Reductio)
-[![Swift Version](https://img.shields.io/badge/Swift-4.2.x-orange.svg)]()
-[![codecov.io](https://codecov.io/github/fdzsergio/SFFocusViewLayout/coverage.svg?branch=master)](https://codecov.io/github/fdzsergio/Reductio?branch=master)
-[![License](https://img.shields.io/cocoapods/l/Reductio.svg?style=flat)](http://cocoapods.org/pods/Reductio)
-[![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
-[![Swift Package Manager compatible](https://img.shields.io/badge/Swift%20Package%20Manager-compatible-brightgreen.svg)](https://github.com/apple/swift-package-manager)
-[![Platform](https://img.shields.io/cocoapods/p/SFFocusViewLayout.svg?style=flat)](http://cocoapods.org/pods/Reductio)
 
 ## Overview
 

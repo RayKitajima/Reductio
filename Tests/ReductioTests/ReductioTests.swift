@@ -6,8 +6,8 @@
  file that was distributed with this source code.
  */
 
+@testable import Reductio
 import XCTest
-import Reductio
 
 final class ReductioTests: XCTestCase {
 
@@ -19,12 +19,10 @@ final class ReductioTests: XCTestCase {
     lazy var summarize: [String] = str.summarize
 
     func testHasKeywords() {
-
         XCTAssertNotNil(keywords)
     }
 
     func testEmptyTextKeywords() {
-
         XCTAssert("".keywords.isEmpty)
     }
 
