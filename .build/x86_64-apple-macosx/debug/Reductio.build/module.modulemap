@@ -1,4 +1,0 @@
-module Reductio {
-    header "/Users/khroma/Works/Reductio/.build/x86_64-apple-macosx/debug/Reductio.build/Reductio-Swift.h"
-    requires objc
-}
