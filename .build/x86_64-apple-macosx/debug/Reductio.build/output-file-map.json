@@ -1,0 +1,59 @@
+{
+  "": {
+    "swift-dependencies": "/Users/khroma/Works/Reductio/.build/x86_64-apple-macosx/debug/Reductio.build/master.swiftdeps"
+  },
+  "/Users/khroma/Works/Reductio/Sources/Reductio/Array+Combinations.swift": {
+    "dependencies": "/Users/khroma/Works/Reductio/.build/x86_64-apple-macosx/debug/Reductio.build/Array+Combinations.d",
+    "object": "/Users/khroma/Works/Reductio/.build/x86_64-apple-macosx/debug/Reductio.build/Array+Combinations.swift.o",
+    "swiftmodule": "/Users/khroma/Works/Reductio/.build/x86_64-apple-macosx/debug/Reductio.build/Array+Combinations~partial.swiftmodule",
+    "swift-dependencies": "/Users/khroma/Works/Reductio/.build/x86_64-apple-macosx/debug/Reductio.build/Array+Combinations.swiftdeps"
+  },
+  "/Users/khroma/Works/Reductio/Sources/Reductio/Keyword.swift": {
+    "dependencies": "/Users/khroma/Works/Reductio/.build/x86_64-apple-macosx/debug/Reductio.build/Keyword.d",
+    "object": "/Users/khroma/Works/Reductio/.build/x86_64-apple-macosx/debug/Reductio.build/Keyword.swift.o",
+    "swiftmodule": "/Users/khroma/Works/Reductio/.build/x86_64-apple-macosx/debug/Reductio.build/Keyword~partial.swiftmodule",
+    "swift-dependencies": "/Users/khroma/Works/Reductio/.build/x86_64-apple-macosx/debug/Reductio.build/Keyword.swiftdeps"
+  },
+  "/Users/khroma/Works/Reductio/Sources/Reductio/Reductio.swift": {
+    "dependencies": "/Users/khroma/Works/Reductio/.build/x86_64-apple-macosx/debug/Reductio.build/Reductio.d",
+    "object": "/Users/khroma/Works/Reductio/.build/x86_64-apple-macosx/debug/Reductio.build/Reductio.swift.o",
+    "swiftmodule": "/Users/khroma/Works/Reductio/.build/x86_64-apple-macosx/debug/Reductio.build/Reductio~partial.swiftmodule",
+    "swift-dependencies": "/Users/khroma/Works/Reductio/.build/x86_64-apple-macosx/debug/Reductio.build/Reductio.swiftdeps"
+  },
+  "/Users/khroma/Works/Reductio/Sources/Reductio/Search.swift": {
+    "dependencies": "/Users/khroma/Works/Reductio/.build/x86_64-apple-macosx/debug/Reductio.build/Search.d",
+    "object": "/Users/khroma/Works/Reductio/.build/x86_64-apple-macosx/debug/Reductio.build/Search.swift.o",
+    "swiftmodule": "/Users/khroma/Works/Reductio/.build/x86_64-apple-macosx/debug/Reductio.build/Search~partial.swiftmodule",
+    "swift-dependencies": "/Users/khroma/Works/Reductio/.build/x86_64-apple-macosx/debug/Reductio.build/Search.swiftdeps"
+  },
+  "/Users/khroma/Works/Reductio/Sources/Reductio/Sentence.swift": {
+    "dependencies": "/Users/khroma/Works/Reductio/.build/x86_64-apple-macosx/debug/Reductio.build/Sentence.d",
+    "object": "/Users/khroma/Works/Reductio/.build/x86_64-apple-macosx/debug/Reductio.build/Sentence.swift.o",
+    "swiftmodule": "/Users/khroma/Works/Reductio/.build/x86_64-apple-macosx/debug/Reductio.build/Sentence~partial.swiftmodule",
+    "swift-dependencies": "/Users/khroma/Works/Reductio/.build/x86_64-apple-macosx/debug/Reductio.build/Sentence.swiftdeps"
+  },
+  "/Users/khroma/Works/Reductio/Sources/Reductio/Stemmer.swift": {
+    "dependencies": "/Users/khroma/Works/Reductio/.build/x86_64-apple-macosx/debug/Reductio.build/Stemmer.d",
+    "object": "/Users/khroma/Works/Reductio/.build/x86_64-apple-macosx/debug/Reductio.build/Stemmer.swift.o",
+    "swiftmodule": "/Users/khroma/Works/Reductio/.build/x86_64-apple-macosx/debug/Reductio.build/Stemmer~partial.swiftmodule",
+    "swift-dependencies": "/Users/khroma/Works/Reductio/.build/x86_64-apple-macosx/debug/Reductio.build/Stemmer.swiftdeps"
+  },
+  "/Users/khroma/Works/Reductio/Sources/Reductio/Stopwords.swift": {
+    "dependencies": "/Users/khroma/Works/Reductio/.build/x86_64-apple-macosx/debug/Reductio.build/Stopwords.d",
+    "object": "/Users/khroma/Works/Reductio/.build/x86_64-apple-macosx/debug/Reductio.build/Stopwords.swift.o",
+    "swiftmodule": "/Users/khroma/Works/Reductio/.build/x86_64-apple-macosx/debug/Reductio.build/Stopwords~partial.swiftmodule",
+    "swift-dependencies": "/Users/khroma/Works/Reductio/.build/x86_64-apple-macosx/debug/Reductio.build/Stopwords.swiftdeps"
+  },
+  "/Users/khroma/Works/Reductio/Sources/Reductio/Summarizer.swift": {
+    "dependencies": "/Users/khroma/Works/Reductio/.build/x86_64-apple-macosx/debug/Reductio.build/Summarizer.d",
+    "object": "/Users/khroma/Works/Reductio/.build/x86_64-apple-macosx/debug/Reductio.build/Summarizer.swift.o",
+    "swiftmodule": "/Users/khroma/Works/Reductio/.build/x86_64-apple-macosx/debug/Reductio.build/Summarizer~partial.swiftmodule",
+    "swift-dependencies": "/Users/khroma/Works/Reductio/.build/x86_64-apple-macosx/debug/Reductio.build/Summarizer.swiftdeps"
+  },
+  "/Users/khroma/Works/Reductio/Sources/Reductio/TextRank.swift": {
+    "dependencies": "/Users/khroma/Works/Reductio/.build/x86_64-apple-macosx/debug/Reductio.build/TextRank.d",
+    "object": "/Users/khroma/Works/Reductio/.build/x86_64-apple-macosx/debug/Reductio.build/TextRank.swift.o",
+    "swiftmodule": "/Users/khroma/Works/Reductio/.build/x86_64-apple-macosx/debug/Reductio.build/TextRank~partial.swiftmodule",
+    "swift-dependencies": "/Users/khroma/Works/Reductio/.build/x86_64-apple-macosx/debug/Reductio.build/TextRank.swiftdeps"
+  }
+}
