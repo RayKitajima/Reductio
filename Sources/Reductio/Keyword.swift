@@ -12,17 +12,19 @@ internal final class Keyword {
 
     private let ngram: Int = 3
     private var words: [String]
+    private let maxIteration: Int
 
     private let ranking = TextRank<String>()
 
-    init(text: String) {
+    init(text: String, maxIteration: Int) {
+        self.maxIteration = maxIteration
         self.words = Keyword.preprocess(text)
     }
 
     func execute() -> [String] {
         filterWords()
         buildGraph()
-        return ranking.execute()
+        return ranking.execute(maxIteration: maxIteration)
             .sorted { $0.1 > $1.1 }
             .map { $0.0 }
     }

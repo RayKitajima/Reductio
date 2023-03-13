@@ -12,14 +12,16 @@ internal final class Summarizer {
 
     private let phrases: [Sentence]
     private let rank = TextRank<Sentence>()
+    private let maxIteration: Int
 
-    init(text: String) {
+    init(text: String, maxIteration: Int) {
+    	self.maxIteration = maxIteration
         self.phrases = text.sentences.map(Sentence.init)
     }
 
     func execute() -> [String] {
         buildGraph()
-        return rank.execute()
+        return rank.execute(maxIteration: maxIteration)
             .sorted { $0.1 > $1.1 }
             .map { $0.0.text }
     }

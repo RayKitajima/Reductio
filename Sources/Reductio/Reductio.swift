@@ -16,13 +16,13 @@ public struct Reductio {
      Extract all keywords from text sorted by relevance
 
      - parameter text: Text to extract keywords.
-
+     - parameter maxIteration: max iteration count to try to find convergence
+     
      - returns: sorted keywords from text
 
      */
-
-    public static func keywords(from text: String, completion: ([String]) -> Void) {
-        completion(text.keywords)
+    public static func keywords(from text: String, maxIteration: Int, completion: ([String]) -> Void) {
+        completion(Reductio.executeKeywords(text: text, maxIteration: maxIteration))
     }
 
     /**
@@ -31,13 +31,13 @@ public struct Reductio {
 
      - parameter text: Text to extract keywords.
      - parameter count: Number of keywords to extract.
+     - parameter maxIteration: max iteration count to try to find convergence
 
      - returns: sorted keywords from text
 
      */
-
-    public static func keywords(from text: String, count: Int, completion: ([String]) -> Void) {
-        completion(text.keywords.slice(length: count))
+    public static func keywords(from text: String, count: Int, maxIteration: Int, completion: ([String]) -> Void) {
+        completion(Reductio.executeKeywords(text: text, maxIteration: maxIteration).slice(length: count))
     }
 
     /**
@@ -45,14 +45,14 @@ public struct Reductio {
      Extract keywords from text sorted by relevance with a rate of compression
 
      - parameter text: Text to extract keywords.
+     - parameter maxIteration: max iteration count to try to find convergence
      - parameter compression: Ratio of compression to extract keywords. From 0..<1.
 
      - returns: sorted keywords from text
 
      */
-
-    public static func keywords(from text: String, compression: Float, completion: ([String]) -> Void) {
-        completion(text.keywords.slice(percent: compression))
+    public static func keywords(from text: String, maxIteration: Int, compression: Float, completion: ([String]) -> Void) {
+        completion(Reductio.executeKeywords(text: text, maxIteration: maxIteration).slice(percent: compression))
     }
 
     /**
@@ -60,13 +60,13 @@ public struct Reductio {
      Reordered text phrases by relevance on text
 
      - parameter text: Text to summarize.
+     - parameter maxIteration: max iteration count to try to find convergence
 
      - returns: sorted phrases from text
 
      */
-
-    public static func summarize(text: String, completion: ([String]) -> Void) {
-        completion(text.summarize)
+    public static func summarize(text: String, maxIteration: Int, completion: ([String]) -> Void) {
+        completion(Reductio.executeSummarizer(text: text, maxIteration: maxIteration))
     }
 
     /**
@@ -74,14 +74,14 @@ public struct Reductio {
      Reordered text phrases by relevance on text
 
      - parameter text: Text to summarize.
+     - parameter maxIteration: max iteration count to try to find convergence
      - parameter count: Number of phrases to extract.
 
      - returns: sorted phrases from text
 
      */
-
-    public static func summarize(text: String, count: Int, completion: ([String]) -> Void) {
-        completion(text.summarize.slice(length: count))
+    public static func summarize(text: String, maxIteration: Int, count: Int, completion: ([String]) -> Void) {
+        completion(Reductio.executeSummarizer(text: text, maxIteration: maxIteration).slice(length: count))
     }
 
     /**
@@ -89,43 +89,54 @@ public struct Reductio {
      Reordered text phrases by relevance on text
 
      - parameter text: Text to summarize.
+     - parameter maxIteration: max iteration count to try to find convergence
      - parameter compression: Ratio of compression to extract phrases. From 0..<1.
 
      - returns: sorted phrases from text
 
      */
-
-    public static func summarize(text: String, compression: Float, completion: ([String]) -> Void) {
-        completion(text.summarize.slice(percent: compression))
+    public static func summarize(text: String, maxIteration: Int, compression: Float, completion: ([String]) -> Void) {
+        completion(Reductio.executeSummarizer(text: text, maxIteration: maxIteration).slice(percent: compression))
     }
-}
-
-public extension String {
+    
     /**
 
      Extract all keywords from text sorted by relevance
 
      - parameter text: Text to extract keywords.
-
+     - parameter maxIteration: max iteration count to try to find convergence
+     
      - returns: sorted keywords from text
 
      */
-
-    var keywords: [String] {
-        return Keyword(text: self).execute()
-    }
-
+	public static func executeKeywords(text: String, maxIteration: Int) -> [String] {
+    	return Keyword(text: text, maxIteration: maxIteration).execute()
+	}
+	
     /**
 
      Reordered text phrases by relevance on text
 
      - parameter text: Text to summarize.
-
+     - parameter maxIteration: max iteration count to try to find convergence
+     
      - returns: sorted phrases from text
 
      */
+	public static func executeSummarizer(text: String, maxIteration: Int) -> [String] {
+		return Summarizer(text: text, maxIteration: maxIteration).execute()
+	}
+}
+
+/*
+public extension String {
+    var keywords: [String] {
+        return Keyword(text: self).execute()
+    }
 
     var summarize: [String] {
         return Summarizer(text: self).execute()
     }
 }
+*/
+

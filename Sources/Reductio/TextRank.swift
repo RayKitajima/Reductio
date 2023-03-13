@@ -32,11 +32,17 @@ internal final class TextRank<T: Hashable> {
         increment(outlinks: from)
     }
 
-    func execute() -> Node {
+    func execute(maxIteration: Int) -> Node {
         var stepNodes = iteration(nodes)
+        var iterationCount = 1
         while !convergence(stepNodes, nodes: nodes) {
+        	if iterationCount >  maxIteration {
+        		print("# reached max iteration. force return")
+        		break
+			}
             nodes = stepNodes
             stepNodes = iteration(nodes)
+            iterationCount = iterationCount + 1
         }
         return nodes
     }
