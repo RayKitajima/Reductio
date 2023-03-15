@@ -37,7 +37,7 @@ internal final class TextRank<T: Hashable> {
         var iterationCount = 1
         while !convergence(stepNodes, nodes: nodes) {
         	if iterationCount >  maxIteration {
-        		print("# reached max iteration. force return")
+        		print("# reached to the max iteration. force return")
         		break
 			}
             nodes = stepNodes

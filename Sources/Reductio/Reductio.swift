@@ -7,7 +7,26 @@
  */
 
 import Foundation
+import NaturalLanguage
 
+@available(macOS 10.14, *)
+public class ReductioContext {
+    var text: String
+    var maxIteration: Int
+    var lang: String
+    var stopwordsDic: StopWords
+    var stopwords: [String] {
+    	return self.stopwordsDic[self.lang]
+	}
+	init(text: String, maxIteration: Int) {
+        self.text = text
+        self.maxIteration = maxIteration
+        self.lang = NLLanguageRecognizer.dominantLanguage(for: text)?.rawValue ?? "en"
+        self.stopwordsDic = StopWords()
+    }
+}
+
+@available(macOS 10.14, *)
 public struct Reductio {
     public init() {}
 
@@ -22,7 +41,8 @@ public struct Reductio {
 
      */
     public static func keywords(from text: String, maxIteration: Int, completion: ([String]) -> Void) {
-        completion(Reductio.executeKeywords(text: text, maxIteration: maxIteration))
+        let context = ReductioContext(text: text, maxIteration: maxIteration)
+        completion(Reductio.executeKeywords(context: context))
     }
 
     /**
@@ -37,7 +57,8 @@ public struct Reductio {
 
      */
     public static func keywords(from text: String, count: Int, maxIteration: Int, completion: ([String]) -> Void) {
-        completion(Reductio.executeKeywords(text: text, maxIteration: maxIteration).slice(length: count))
+    	let context = ReductioContext(text: text, maxIteration: maxIteration)
+        completion(Reductio.executeKeywords(context: context).slice(length: count))
     }
 
     /**
@@ -52,7 +73,8 @@ public struct Reductio {
 
      */
     public static func keywords(from text: String, maxIteration: Int, compression: Float, completion: ([String]) -> Void) {
-        completion(Reductio.executeKeywords(text: text, maxIteration: maxIteration).slice(percent: compression))
+    	let context = ReductioContext(text: text, maxIteration: maxIteration)
+        completion(Reductio.executeKeywords(context: context).slice(percent: compression))
     }
 
     /**
@@ -66,7 +88,8 @@ public struct Reductio {
 
      */
     public static func summarize(text: String, maxIteration: Int, completion: ([String]) -> Void) {
-        completion(Reductio.executeSummarizer(text: text, maxIteration: maxIteration))
+    	let context = ReductioContext(text: text, maxIteration: maxIteration)
+        completion(Reductio.executeSummarizer(context: context))
     }
 
     /**
@@ -81,7 +104,8 @@ public struct Reductio {
 
      */
     public static func summarize(text: String, maxIteration: Int, count: Int, completion: ([String]) -> Void) {
-        completion(Reductio.executeSummarizer(text: text, maxIteration: maxIteration).slice(length: count))
+    	let context = ReductioContext(text: text, maxIteration: maxIteration)
+        completion(Reductio.executeSummarizer(context: context).slice(length: count))
     }
 
     /**
@@ -96,7 +120,8 @@ public struct Reductio {
 
      */
     public static func summarize(text: String, maxIteration: Int, compression: Float, completion: ([String]) -> Void) {
-        completion(Reductio.executeSummarizer(text: text, maxIteration: maxIteration).slice(percent: compression))
+    	let context = ReductioContext(text: text, maxIteration: maxIteration)
+        completion(Reductio.executeSummarizer(context: context).slice(percent: compression))
     }
     
     /**
@@ -109,8 +134,8 @@ public struct Reductio {
      - returns: sorted keywords from text
 
      */
-	public static func executeKeywords(text: String, maxIteration: Int) -> [String] {
-    	return Keyword(text: text, maxIteration: maxIteration).execute()
+	public static func executeKeywords(context: ReductioContext) -> [String] {
+    	return Keyword(context: context).execute()
 	}
 	
     /**
@@ -123,8 +148,8 @@ public struct Reductio {
      - returns: sorted phrases from text
 
      */
-	public static func executeSummarizer(text: String, maxIteration: Int) -> [String] {
-		return Summarizer(text: text, maxIteration: maxIteration).execute()
+	public static func executeSummarizer(context: ReductioContext) -> [String] {
+		return Summarizer(context: context).execute()
 	}
 }
 

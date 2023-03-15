@@ -8,6 +8,7 @@
 
 import Foundation
 
+@available(macOS 10.14, *)
 internal final class Keyword {
 
     private let ngram: Int = 3
@@ -15,9 +16,13 @@ internal final class Keyword {
     private let maxIteration: Int
 
     private let ranking = TextRank<String>()
+    
+    private var context: ReductioContext
 
-    init(text: String, maxIteration: Int) {
-        self.maxIteration = maxIteration
+    init(context: ReductioContext) {
+    	self.context = context
+		let text = self.context.text
+        self.maxIteration = self.context.maxIteration
         self.words = Keyword.preprocess(text)
     }
 
@@ -47,6 +52,7 @@ internal final class Keyword {
     }
 }
 
+@available(macOS 10.14, *)
 private extension Keyword {
 
     static func preprocess(_ text: String) -> [String] {
@@ -59,6 +65,6 @@ private extension Keyword {
     }
 
     func removeStopWords(_ word: String) -> Bool {
-        return !stopwords.contains(word)
+        return !self.context.stopwords.contains(word)
     }
 }

@@ -7,35 +7,38 @@
  */
 
 import Foundation
+import NaturalLanguage
 
+@available(macOS 10.14, *)
 internal struct Stemmer {
 
     typealias Language = String
     typealias Script = String
 
-    private static let language: Language = "en"
+    private static var language: Language = "en"
     private static let script: Script = "Latn"
     private static let orthography = NSOrthography(dominantScript: script, languageMap: [script: [language]])
 
-    static func stemmingWordsInText(_ text: String) -> [String] {
+    /**
+    multi-language stemming
+    
+      - detect language by NLLanguageRecognizer
+      - split text by NLTokenizer
+      - select appropriate stopwords and filter words
+
+    */
+    static func stemmingWordsInText(_ text: String, context: ReductioContext) -> [String] {
+        let language = NLLanguage(rawValue: context.lang)
+        let tokenizer = NLTokenizer(unit: .word)
+        tokenizer.setLanguage(language)
+        tokenizer.string = text
+        let tokens = tokenizer.tokens(for: text.startIndex..<text.endIndex)
         var stems: [String] = []
-
-        let range = NSRange(location: 0, length: text.count)
-        let tagOptions: NSLinguisticTagger.Options = [.omitWhitespace, .omitPunctuation, .omitOther]
-        let tagSchemes = NSLinguisticTagger.availableTagSchemes(forLanguage: language)
-        let tagger = NSLinguisticTagger(tagSchemes: tagSchemes, options: Int(tagOptions.rawValue))
-
-        tagger.string = text
-        tagger.setOrthography(orthography, range: range)
-        tagger.enumerateTags(in: range,
-                             scheme: .lemma,
-                             options: tagOptions) { (_, tokenRange, _, _) in
-            let token = (text as NSString).substring(with: tokenRange)
-            if !token.isEmpty {
-                stems.append(token.lowercased())
-            }
+        for token in tokens {
+            let tokenText = String(text[token])
+            stems.append(tokenText.lowercased())
         }
-
+        stems = stems.filter { !context.stopwords.contains($0) }
         return stems
     }
 }

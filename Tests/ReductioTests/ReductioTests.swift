@@ -17,15 +17,18 @@ final class ReductioTests: XCTestCase {
     
     let maxIteration: Int = 200
 
-    lazy var keywords: [String] = Reductio.executeKeywords(text: str, maxIteration: maxIteration)
-    lazy var summarize: [String] = Reductio.executeSummarizer(text: str, maxIteration: maxIteration)
+	var context:ReductioContext { return ReductioContext(text: str, maxIteration: maxIteration) }
+
+    lazy var keywords: [String] = Reductio.executeKeywords(context: context)
+    lazy var summarize: [String] = Reductio.executeSummarizer(context: context)
 
     func testHasKeywords() {
         XCTAssertNotNil(keywords)
     }
 
     func testEmptyTextKeywords() {
-        XCTAssert(Reductio.executeKeywords(text: "", maxIteration: maxIteration).isEmpty)
+    	let context = ReductioContext(text: "", maxIteration: maxIteration)
+        XCTAssert(Reductio.executeKeywords(context: context).isEmpty)
     }
 
     func testTextContainsKeywords() {

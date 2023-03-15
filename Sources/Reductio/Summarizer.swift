@@ -8,15 +8,17 @@
 
 import Foundation
 
+@available(macOS 10.14, *)
 internal final class Summarizer {
 
     private let phrases: [Sentence]
     private let rank = TextRank<Sentence>()
     private let maxIteration: Int
 
-    init(text: String, maxIteration: Int) {
-    	self.maxIteration = maxIteration
-        self.phrases = text.sentences.map(Sentence.init)
+    init(context: ReductioContext) {
+		let text = context.text
+    	self.maxIteration = context.maxIteration
+        self.phrases = text.sentences.map( { Sentence(text: $0, context: context) } )
     }
 
     func execute() -> [String] {

@@ -8,24 +8,22 @@
 
 import Foundation
 
+@available(macOS 10.14, *)
 internal struct Sentence {
 
     let text: String
     let words: [String]
+    
+    var context: ReductioContext
 
-    init(text: String) {
+    init(text: String, context: ReductioContext) {
+    	self.context = context
         self.text = text
-        self.words = Stemmer.stemmingWordsInText(text)
-            .filter { !Search.binary(stopwords, target: $0) }
-    }
-
-    init(text: String, stopwords: [String] = stopwords) {
-        self.text = text
-        self.words = Stemmer.stemmingWordsInText(text)
-            .filter { !Search.binary(stopwords, target: $0) }
+		self.words = Stemmer.stemmingWordsInText(text, context: context)
     }
 }
 
+@available(macOS 10.14, *)
 extension Sentence: Hashable {
 
     func hash(into hasher: inout Hasher) {
@@ -40,13 +38,27 @@ extension Sentence: Hashable {
 internal extension String {
 
     var sentences: [String] {
+        var tokenRanges = [Range<String.Index>]()
+        let linguisticTags = self.linguisticTags(
+            in: self.startIndex ..< self.endIndex,
+            scheme: NSLinguisticTagScheme.lexicalClass.rawValue,
+            options: [],
+            tokenRanges: &tokenRanges
+        )
+        var result = [String]()
 
-        var sentences = [String]()
-        let range = self.range(of: self)
+        let sentenceTerminatorsIndexes = linguisticTags.enumerated().filter {
+            $0.1 == "SentenceTerminator"
+        }.map { tokenRanges[$0.0].lowerBound }
 
-        self.enumerateSubstrings(in: range!, options: .bySentences) { (substring, _, _, _) in
-            sentences.append(substring!)
+        var previousIndex = self.startIndex
+        for currentIndex in sentenceTerminatorsIndexes {
+            let sentenceRange = previousIndex ... currentIndex
+            result.append(
+                self[sentenceRange].trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
+            )
+            previousIndex = currentIndex
         }
-        return sentences
+        return result
     }
 }
