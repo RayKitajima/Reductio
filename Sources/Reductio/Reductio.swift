@@ -9,6 +9,7 @@
 import Foundation
 import NaturalLanguage
 
+@available(iOS 12.0, *)
 @available(macOS 10.14, *)
 public class ReductioContext {
     var text: String
@@ -26,6 +27,7 @@ public class ReductioContext {
     }
 }
 
+@available(iOS 12.0, *)
 @available(macOS 10.14, *)
 public struct Reductio {
     public init() {}

@@ -8,6 +8,7 @@
 
 import Foundation
 
+@available(iOS 12.0, *)
 @available(macOS 10.14, *)
 internal struct Sentence {
 
@@ -23,6 +24,7 @@ internal struct Sentence {
     }
 }
 
+@available(iOS 12.0, *)
 @available(macOS 10.14, *)
 extension Sentence: Hashable {
 

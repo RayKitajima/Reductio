@@ -9,6 +9,7 @@
 import Foundation
 import NaturalLanguage
 
+@available(iOS 12.0, *)
 @available(macOS 10.14, *)
 internal struct Stemmer {
 

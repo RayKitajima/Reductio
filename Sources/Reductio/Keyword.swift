@@ -8,6 +8,7 @@
 
 import Foundation
 
+@available(iOS 12.0, *)
 @available(macOS 10.14, *)
 internal final class Keyword {
 
@@ -52,6 +53,7 @@ internal final class Keyword {
     }
 }
 
+@available(iOS 12.0, *)
 @available(macOS 10.14, *)
 private extension Keyword {
 

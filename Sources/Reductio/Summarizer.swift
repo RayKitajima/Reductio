@@ -8,6 +8,7 @@
 
 import Foundation
 
+@available(iOS 12.0, *)
 @available(macOS 10.14, *)
 internal final class Summarizer {
 
